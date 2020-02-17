@@ -204,6 +204,10 @@ body {
   background: rgba(255, 152, 0, 0.62);
 }
 
+.card__face.card__face--front:hover {
+  background-color: #FF9800;
+}
+
 .card__face--back {
   z-index: 2;
   background: white;
