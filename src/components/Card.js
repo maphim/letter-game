@@ -1,6 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const Card = ({ style, text, onClick, isHidden, isActive }) => {
+const Card = ({ game, value, onClick, isHidden, isActive }) => {
+
+  const style = {
+    width: `${100 / game.numInRow}%`,
+    height: `${100 / game.numInRow}%`
+  }
+
   const contentClass = (() => {
     let className = "card__content";
     if (isHidden) {
@@ -16,10 +23,12 @@ const Card = ({ style, text, onClick, isHidden, isActive }) => {
     <div className="card" style={style} onClick={onClick}>
       <div className={contentClass}>
         <div className="card__face card__face--front" />
-        <div className="card__face card__face--back">{text}</div>
+        <div className="card__face card__face--back">{value}</div>
       </div>
     </div>
   );
 };
 
-export default Card;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(Card);

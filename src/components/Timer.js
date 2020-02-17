@@ -1,30 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
-import { updateDurationGame, updateStatusGame } from "../actions";
+import helper from '../common/helper';
+import { gameActions, pointActions } from "../actions";
 
-const Timer = ({ app, dispatch }) => {
-  if (!app.game) return null;
+const Timer = ({ game, cards, tick, win, loss }) => {
 
-  const formatTime = num => {
-    let len = num.toString().length;
-    if (len === 1) return `0${num}`;
-    else return num;
-  };
+  let {duration, status} = game;
 
-  let { duration } = app.game;
+  let min = helper.formatTime(Math.floor(duration / 60));
+  let second = helper.formatTime(duration % 60);
 
-  let min = formatTime(Math.floor(duration / 60));
-  let second = formatTime(duration % 60);
+  // tim danh sach card hidden
+  let cardInList = cards.filter(card => card.isHidden === false);
 
-  if (duration > 1) {
-    setTimeout(function() {
-      dispatch(updateDurationGame(duration - 1));
-    }, 1000);
-  } else {
-    setTimeout(function() {
-      dispatch(updateDurationGame(0));
-      dispatch(updateStatusGame(1));
-    }, 1000);
+  if (status === 0 && cardInList.length === 0 && duration > 0) {
+    win(game);
+  }
+
+  if (status === 0 && duration === 0) {
+    loss();
+  }
+
+  if (status === 0 && duration > 0) {
+    setTimeout(() => {
+      tick(game.duration)
+    }, 1000)
   }
 
   return (
@@ -32,10 +32,27 @@ const Timer = ({ app, dispatch }) => {
       <span>{min}</span>:<span>{second}</span>
     </span>
   );
+
 };
 
 const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps)(Timer);
+const mapDispatchToProps = dispatch => ({
+  tick: duration => {
+    dispatch(gameActions.updateDuration(duration - 1))
+  },
+  win: game => {
+    dispatch(gameActions.updateStatus(1));
+    dispatch(pointActions.increaseWin())
+    dispatch(pointActions.setBestTime(game.level, game.duration))
+    
+  },
+  loss: () => {
+    dispatch(gameActions.updateStatus(2));
+    dispatch(pointActions.increaseLoss())
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);

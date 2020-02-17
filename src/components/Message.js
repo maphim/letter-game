@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { initApp } from "../actions";
+import { gameActions, cardActions, matchsActions } from "../actions";
 
-const Message = ({ app, goBack }) => {
-  if (app.game.status === 0) return null;
+const Message = ({ game, resetGame }) => {
+
+  let { status } = game;
+
+  if (status === 0) return null;
 
   let message = `You are losser!`;
-  if (app.game.status === 1) {
+  if (game.status === 1) {
     message = `Congratulations! you are the winner`;
   }
 
@@ -14,7 +17,7 @@ const Message = ({ app, goBack }) => {
     <div className="wrap-message">
       <div className="message">
         {message}
-        <div className="btn-restart" onClick={() => goBack()}>
+        <div className="btn-restart" onClick={() => resetGame(game)}>
           Restart Game
         </div>
       </div>
@@ -22,13 +25,13 @@ const Message = ({ app, goBack }) => {
   );
 };
 
-const mapStateToProps = state => {
-  return state;
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  goBack: () => {
-    dispatch(initApp({}));
+  resetGame: (game) => {
+    dispatch(matchsActions.add(game));
+    dispatch(gameActions.reset())
+    dispatch(cardActions.resetList())
   }
 });
 

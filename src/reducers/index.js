@@ -1,8 +1,13 @@
 import { combineReducers } from "redux";
-import app from "./app";
-import games from "./games";
+
+import matchs from "./matchs";
+import game from './game';
+import cards from './cards';
+import point from "./point";
 
 export default combineReducers({
-  app,
-  games
+  matchs,
+  game,
+  cards,
+  point
 });
