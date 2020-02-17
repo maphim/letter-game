@@ -1,0 +1,258 @@
+html,
+body {
+  overflow: hidden;
+}
+body {
+  position: relative;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Bangers", Arial, Helvetica, sans-serif;
+  background-color: #1b1b1b;
+}
+
+.game-app {
+  margin: calc((100vh - 600px) / 2) auto;
+  box-shadow: 1px 1px 1px white;
+  width: 500px;
+  height: 600px;
+  border: 2px solid #ff5722;
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  padding: 20px;
+  background-color: white;
+}
+
+/*
+ GameStart Screen
+*/
+
+.game-choose {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.game-choose .wrap-levels {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-choose h1 {
+  color: #ff5722;
+  letter-spacing: 0.1em;
+}
+
+.game-choose .wrap-levels .btn-choose-game {
+  font-size: 1.2em;
+  border: 2px solid #ff5722;
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  cursor: pointer;
+  width: 120px;
+  padding: 20px;
+  margin: 10px 0px;
+  text-align: center;
+  background-color: #ffc107c9;
+  color: white;
+}
+
+.game-choose .wrap-levels .btn-choose-game:hover {
+  background-color: #000;
+  color: white;
+  background-color: #ff9800;
+}
+
+.statistics {
+  padding: 10px 0px 20px 0px;
+  color: #a2a2a2;
+}
+
+.statistics span {
+  padding: 0px 8px;
+  border-right: 1px solid #bebebe;
+}
+
+.statistics span u {
+  padding: 0px 5px;
+}
+
+/*
+ Gameplay Screen
+*/
+
+.wrap-gameplay {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.wrap-message {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background-color: white;
+}
+
+.wrap-message .message {
+  font-size: 3.5em;
+}
+
+.wrap-message .btn-restart {
+  cursor: pointer;
+  font-size: 0.4em;
+  display: block;
+  padding: 10px;
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  width: 150px;
+  background-color: #f1ecec;
+}
+
+.wrap-message .btn-restart:hover {
+  color: #ff5722;
+}
+
+.game-info {
+  height: 80px;
+  position: relative;
+}
+
+.game-info .go-back {
+  color: #bebebe;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  left: 11px;
+  font-size: 13px;
+  z-index: 10;
+}
+
+.game-info .wrap-info {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.game-info .box__info {
+  display: inline-flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  font-size: 1.5em;
+  color: #ff5722;
+  letter-spacing: 0.1em;
+}
+
+.game-info .box__info > div {
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+  padding: 20px;
+}
+
+.game-info .box__info .label {
+  color: #ffbf61;
+}
+
+.game-info .box__info .value {
+  padding: 0 10px;
+  font-weight: 550;
+}
+
+.game-board {
+  padding: 5px;
+  height: calc(100% - 100px);
+  width: 100%;
+}
+
+.game-board .board {
+  width: calc(100% - 10px);
+  height: calc(100% - 10px);
+}
+
+.game-board .board .card {
+  display: inline-flex;
+  background-color: transparent;
+  perspective: 600px;
+}
+
+.game-board .card .card__content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  font-size: 0px;
+}
+
+.card__face {
+  position: absolute;
+  backface-visibility: hidden;
+  border: 1px solid #fff;
+  cursor: pointer;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  margin: 1px;
+  border-radius: 4% 95% 6% 95%/95% 4% 92% 5%;
+}
+
+.card__face--front {
+  background: rgba(255, 152, 0, 0.62);
+}
+
+.card__face--back {
+  z-index: 2;
+  background: white;
+  color: #bebebe;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__content.hidden .card__face {
+  display: none;
+}
+
+.card__content.active {
+  transform: rotateY(180deg);
+  z-index: 3;
+}
+
+.card__content.active .card__face {
+  border: 1px solid #ff5722;
+  background-color: transparent;
+  color: #ff5722;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 500px) {
+  .game-app {
+    margin: 0 auto;
+    box-shadow: none;
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+    padding: 0px;
+    margin: 0px;
+  }
+  .game-info .go-back {
+    top: 13px;
+    font-size: 13px;
+  }
+  .game-info .wrap-info {
+    border-radius: 0;
+  }
+  .game-info .box__info {
+    font-size: 1em;
+  }
+  .game-board .card .card__face {
+    border-radius: 0% 60% 6% 39%/ 20% 4% 80% 5%;
+  }
+}
