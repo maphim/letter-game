@@ -2,7 +2,8 @@ const point = (
     state = {
         wonNumber: 0,
         lossNumber: 0,
-        bestTime: {}
+        bestTime: {
+        }
     },
     action
 ) => {
@@ -18,18 +19,20 @@ const point = (
             return { ...state, lossNumber };
 
         case "point:set_best_time":
-            if (state.bestTime[action.level] > action.time) {
-                
-                let bestTime = {};
+            console.log('state -> bestTime', state.bestTime)
+            if (
+                (!state.bestTime[action.level] && action.time)
+                || (state.bestTime[action.level] && state.bestTime[action.level] > action.time)
+            ) {
+                let bestTime = state.bestTime;
                 bestTime[action.level] = action.time;
-
                 return {
                     ...state,
                     bestTime
                 };
-            } else {
-                return state;
             }
+            return state;
+
 
         default:
             return state;

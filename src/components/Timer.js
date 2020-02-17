@@ -36,6 +36,7 @@ const Timer = ({ game, cards, tick, win, loss }) => {
 };
 
 const mapStateToProps = state => {
+  console.log(state.point);
   return state;
 };
 
@@ -44,6 +45,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(gameActions.updateDuration(duration - 1))
   },
   win: game => {
+    console.log('duration --> ', game.duration);
     dispatch(gameActions.updateStatus(1));
     dispatch(pointActions.increaseWin())
     dispatch(pointActions.setBestTime(game.level, game.duration))

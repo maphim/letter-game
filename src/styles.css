@@ -231,6 +231,52 @@ body {
   font-weight: 600;
 }
 
+/*
+  Statistic
+*/
+
+.wrap-statistics {
+  padding-bottom: 10px;
+}
+
+.wrap-statistics .box__statistic {
+  font-size: 22px;
+  display: inline;
+  background-color: white;
+  padding: 4px;
+  margin: 0px 5px;
+}
+
+.wrap-statistics .box__statistic--besttime {
+  font-size: 11px;
+}
+
+.wrap-statistics .box__statistic .key, .wrap-statistics .box__statistic .value {
+  font-size: 22px;
+}
+
+.wrap-statistics .box__statistic .value {
+  background-color: #ffbf61;
+  padding: 2px;
+  margin-left : 5px;
+}
+
+.wrap-statistics .box__statistic--besttime .key, .wrap-statistics .box__statistic--besttime .value {
+  font-size: 20px;
+}
+
+.wrap-statistics .box__statistic--besttime .value {
+  background-color: #8bc34a;
+}
+
+.wrap-statistics .box__statistic--win .value {
+  background-color: #8bc34a;
+}
+
+.wrap-statistics .unit {
+  font-size: 12px;
+}
+
 @media screen and (max-width: 500px) {
   .game-app {
     margin: 0 auto;
@@ -245,6 +291,13 @@ body {
   .wrap-message .message {
     font-size: 2.5em;
     padding: 10px;
+  }
+  .wrap-statistics .box__statistic {
+      font-size: 17px;
+      display: inline-grid;
+      padding: 0px;
+      margin: 9px;
+      text-align: center;
   }
   .game-info .go-back {
     top: 13px;
