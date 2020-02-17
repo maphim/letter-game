@@ -35,10 +35,7 @@ const Timer = ({ game, cards, tick, win, loss }) => {
 
 };
 
-const mapStateToProps = state => {
-  console.log(state.point);
-  return state;
-};
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   tick: duration => {
