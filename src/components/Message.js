@@ -8,6 +8,8 @@ const Message = ({ game, resetGame }) => {
 
   if (status === 0) return null;
 
+  let remainTime = (<div><small>Remain time : {game.duration}s</small></div>);
+
   let message = `You are losser!`;
   if (game.status === 1) {
     message = `Congratulations! you are the winner`;
@@ -17,6 +19,7 @@ const Message = ({ game, resetGame }) => {
     <div className="wrap-message">
       <div className="message">
         {message}
+        {game.status === 1 ? remainTime : null}
         <div className="btn-restart" onClick={() => resetGame(game)}>
           Restart Game
         </div>

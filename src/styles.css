@@ -103,6 +103,10 @@ body {
   font-size: 3.5em;
 }
 
+.wrap-message .message small {
+  color: #FFC107;
+}
+
 .wrap-message .btn-restart {
   cursor: pointer;
   font-size: 0.4em;
