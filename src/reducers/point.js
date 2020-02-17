@@ -19,7 +19,6 @@ const point = (
             return { ...state, lossNumber };
 
         case "point:set_best_time":
-            console.log('state -> bestTime', state.bestTime)
             if (
                 (!state.bestTime[action.level] && action.time)
                 || (state.bestTime[action.level] && state.bestTime[action.level] > action.time)

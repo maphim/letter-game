@@ -42,7 +42,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch(gameActions.updateDuration(duration - 1))
   },
   win: game => {
-    console.log('duration --> ', game.duration);
     dispatch(gameActions.updateStatus(1));
     dispatch(pointActions.increaseWin())
     dispatch(pointActions.setBestTime(game.level, game.duration))
